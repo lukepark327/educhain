@@ -48,7 +48,3 @@ def stopNode(URL, PORT):
 
     res = post(target)
     return res
-
-
-if __name__ == '__main__':
-    pass

@@ -4,6 +4,13 @@ from requests import get, post
 import ast
 from pprint import pprint
 from time import sleep
+from platform import system
+
+from agent import getBlockchain
+
+
+def isWindows():
+    return True if system() == "Windows" else return False
 
 
 def start(total):
@@ -25,11 +32,20 @@ def start(total):
     # number of total node(s)
     for num in range(total):
         try:
-            # npm start
+            # setting env.
             os.environ['HTTP_PORT'] = str(HTTP_base + num)
             os.environ['P2P_PORT'] = str(P2P_base + num)
-            os.system("START /B npm start")  # background execution
-            sleep(1)  # for logging
+
+            # npm start
+            # background execution
+            if isWindows():
+                os.system("START /B npm start")
+            else:
+                os.system("npm start &")
+
+            # for logging
+            sleep(1)
+
         except:
             return False
 
@@ -38,12 +54,15 @@ def start(total):
 
 def killall():
     """
-    :return:    error occurs-False- or not-True-.
+    :return: error occurs-False- or not-True-.
     """
 
     try:
         # killall npm
-        os.system("taskkill /im node.exe /F")
+        if isWindows():
+            os.system("taskkill /im node.exe /F")
+        else:
+            os.system("killall npm")
     except:
         return False
 
@@ -51,13 +70,34 @@ def killall():
 
 
 if __name__ == '__main__':
+    """
+    """
     num_node = 3
 
     # npm start
-    start(num_node)
+    if not start(num_node):
+        print("[FAIL] npm start")
 
-    # interval
-    sleep(10)
 
-    #
-    killall()
+
+    """
+    body
+    """
+    URL = "http://127.0.0.1"
+    PORT = 3001
+
+    res = getBlockchain(URL, PORT)
+
+    for output in ast.literal_eval(res.text):
+        print(json.dumps(output, indent=2))
+
+
+    sleep(1)
+
+
+
+
+
+    # killall npm
+    if not killall():
+        print("[FAIL] killall npm")

@@ -1,0 +1,2 @@
+def my():
+    print("Hello")

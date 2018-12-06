@@ -28,7 +28,7 @@ def start(total):
             # npm start
             os.environ['HTTP_PORT'] = str(HTTP_base + num)
             os.environ['P2P_PORT'] = str(P2P_base + num)
-            os.system("npm start &")  # background execution
+            os.system("START /B npm start")  # background execution
             sleep(1)  # for logging
         except:
             return False
@@ -43,7 +43,7 @@ def killall():
 
     try:
         # killall npm
-        os.system("killall npm")
+        os.system("taskkill /im node.exe /F")
     except:
         return False
 

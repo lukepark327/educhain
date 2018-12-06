@@ -10,7 +10,7 @@ from agent import getBlockchain
 
 
 def isWindows():
-    return True if system() == "Windows" else return False
+    return True if system() == "Windows" else False
 
 
 def start(total):

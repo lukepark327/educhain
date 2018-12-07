@@ -1,4 +1,5 @@
-import os, sys
+import os
+import sys
 import json
 from requests import get, post
 import ast
@@ -6,7 +7,7 @@ from pprint import pprint
 from time import sleep
 from platform import system
 
-from agent import getBlockchain
+from chain_selection import main as chain_selection
 
 
 def isWindows():
@@ -63,6 +64,7 @@ def killall():
             os.system("taskkill /im node.exe /F")
         else:
             os.system("killall npm")
+
     except:
         return False
 
@@ -77,27 +79,18 @@ if __name__ == '__main__':
     # npm start
     if not start(num_node):
         print("[FAIL] npm start")
-
+        killall()
+        sys.exit(1)
 
 
     """
     body
     """
-    URL = "http://127.0.0.1"
-    PORT = 3001
-
-    res = getBlockchain(URL, PORT)
-
-    for output in ast.literal_eval(res.text):
-        print(json.dumps(output, indent=2))
-
-
-    sleep(1)
-
-
-
+    chain_selection.tests()
+    sleep(10)
 
 
     # killall npm
     if not killall():
         print("[FAIL] killall npm")
+        sys.exit(1)

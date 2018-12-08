@@ -1,5 +1,5 @@
 # instructional-blockchain
-instructional blockchain :: blockchain simulator :: based on one-chain
+blockchain simulator :: based on one-chain
 
 ## ref
 https://github.com/twodude/onechain   

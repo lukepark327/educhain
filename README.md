@@ -1,3 +1,8 @@
+[![license](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![node](https://img.shields.io/badge/node-%3E%3D4.3.2-brightgreen.svg)](https://nodejs.org/en/)
+[![python](https://img.shields.io/badge/python-3.7.1-blue.svg)](https://www.python.org)   
+
+
 # instructional-blockchain
 blockchain simulator :: based on one-chain
 

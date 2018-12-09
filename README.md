@@ -7,25 +7,23 @@
 
 ![symbol](https://github.com/twodude/instructional-blockchain/blob/master/images/symbol.png)
 
-Instructional blockchain project is an automated testing software.
+```instructional-blockchain``` is an automated testing software.
 > The main project of
 **Sogang Univ. Blockchain Lab.**   
 > Based on [one-chain](https://github.com/twodude/onechain)   
 
 ## Abstract
-Instructional-blockchain is a simple blockchain implementation for educational purpose. It supports generating blocks, varifying blocks, mining blocks, consensus about conflicting chains, connecting peers, and various wallet functions.
+```instructional-blockchain``` is a simple blockchain implementation for educational purpose. It supports generating blocks, varifying blocks, mining blocks, consensus about conflicting chains, connecting peers, and various wallet functions. Like Pintos, simple operating system framework for the 80x86 architecture, ```instructional-blockchain``` is intended to introduce undergraduates to concepts in blockchain core design and implementation.
 
+Blockchain core and its accompanying parts are written in Node.js. Testing or simulating parts are written in Python.
 
-Pintos is computer software, a simple instructional operating system framework for the x86 instruction set architecture. It supports kernel threads, loading and running user programs, and a file system, but it implements all of these in a very simple way. It was created at Stanford University by Ben Pfaff in 2004. Wikipedia
-Written in: C
-Platform: x86
-Original author(s): Ben Pfaff
-License: BSD-like
-Developer(s): Ben Pfaff
+It was created at Sogang University's Blockchain Lab. by
+**[Luke Park (Sanghyeon Park)](https://github.com/twodude)**
+in 2018.
 
-## ref
-https://github.com/twodude/onechain   
-https://github.com/tomalex0/node-circular-dependcy   
+## Environments
+- Node.js v8.11.3 (>=4.3.2)
+- Python 3.7.1 
 
 ## License
 > The instructional-blockchain project is licensed under the [Apache License, Version 2.0](https://opensource.org/licenses/Apache-2.0), also included in our repository in the [LICENSE](https://github.com/twodude/instructional-blockchain/blob/master/LICENSE) file.

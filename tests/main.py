@@ -1,92 +1,25 @@
-import os
-import sys
-from platform import system
 from time import sleep
 
-
-def isWindows():
-    return True if system() == "Windows" else False
-
-
-def start(total):
-    """
-    :param total:   number of total node(s).
-    :return:        error occurs-False- or not-True-.
-    """
-
-    # move src dir.
-    os.chdir("../src")
-
-    # npm install
-    os.system("npm install")  # sequentially
-
-    # default port num.
-    HTTP_base = 3001
-    P2P_base = 6001
-
-    # number of total node(s)
-    for num in range(total):
-        try:
-            # setting env.
-            os.environ['HTTP_PORT'] = str(HTTP_base + num)
-            os.environ['P2P_PORT'] = str(P2P_base + num)
-
-            # npm start
-            # background execution
-            if isWindows():
-                os.system("START /B npm start")
-            else:
-                os.system("npm start &")
-
-            # for logging
-            sleep(1)
-
-        except:
-            return False
-
-    return True
-
-
-def killall():
-    """
-    :return: error occurs-False- or not-True-.
-    """
-
-    try:
-        # killall npm
-        if isWindows():
-            os.system("taskkill /im node.exe /F")
-        else:
-            os.system("killall npm")
-
-    except:
-        return False
-
-    return True
-
-
 if __name__ == '__main__':
-    """
-    """
-    num_node = 3
+    tests = []
 
-    # npm start
-    if not start(num_node):
-        print("[FAIL] npm start")
-        killall()
-        sys.exit(1)
-
+    # import test cases
+    from test1 import main as test1
+    tests.append(test1)
 
     """
-    body
+    Run test(s)
     """
-    from scenarios import main as scenarios
+    pass_cnt = 0
+    total_cnt = 0
 
-    scenarios.tests()
-    sleep(10)
+    for test in tests:
+        pass_cnt_per_test, total_cnt_per_test = test.scenario()
+        pass_cnt += pass_cnt_per_test
+        total_cnt += total_cnt_per_test
 
+        sleep(1)
 
-    # killall npm
-    if not killall():
-        print("[FAIL] killall npm")
-        sys.exit(1)
+    # print test results
+    print("")
+    print(str(pass_cnt) + " / " + str(total_cnt) + " tests pass")

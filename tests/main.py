@@ -1,13 +1,7 @@
 import os
 import sys
-import json
-from requests import get, post
-import ast
-from pprint import pprint
-from time import sleep
 from platform import system
-
-from chain_selection import main as chain_selection
+from time import sleep
 
 
 def isWindows():
@@ -86,7 +80,9 @@ if __name__ == '__main__':
     """
     body
     """
-    chain_selection.tests()
+    from scenarios import main as scenarios
+
+    scenarios.tests()
     sleep(10)
 
 

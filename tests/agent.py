@@ -10,16 +10,13 @@ def getBlockchain(URL, PORT):
     return res
 
 
-def addNewBlock(URL, PORT, req=None):
+def addNewBlock(URL, PORT, req=""):
     op = "mineBlock"
     target = URL + ":" + str(PORT) + '/' + op
 
-    if req == None:
-        res = post(target)
-    else:
-        headers = {'Content-type': 'application/json'}
-        data = {"data": req}
-        res = post(target, data=json.dumps(data), headers=headers)
+    headers = {'Content-type': 'application/json'}
+    data = {"data": req}
+    res = post(target, data=json.dumps(data), headers=headers)
 
     return res
 

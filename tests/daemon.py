@@ -17,7 +17,7 @@ def start(total):
     os.chdir("../src")
 
     # npm install
-    os.system("npm install")  # sequentially
+    os.system("npm install --silent")  # sequentially
 
     # default port num.
     HTTP_base = 3001
@@ -33,18 +33,15 @@ def start(total):
             # npm start
             # background execution
             if isWindows():
-                os.system("START /B npm start")
+                os.system("START /B npm start --silent")
             else:
-                os.system("npm start &")
+                os.system("npm start --silent&")
 
-            # for logging
+            # for logging, et al.
             sleep(1)
 
         except:
             return False
-
-        finally:
-            print("")
 
     return True
 
@@ -60,6 +57,9 @@ def killall():
             os.system("taskkill /im node.exe /F")
         else:
             os.system("killall npm")
+
+        # for logging, at el.
+        sleep(1)
 
     except:
         return False

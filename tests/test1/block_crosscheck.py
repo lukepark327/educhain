@@ -12,30 +12,42 @@ from utils import hexToBinary
 # Todo: Timeout
 def addBlocks(URL, PORT, num=1):
     """
-    :return: error occurs-False- or not-True-.
+    :return: error occurs-False- or not-True-, list of added blocks
     """
     try:
         for i in range(num):
             res = addNewBlock(URL, PORT)
             sleep(random.randrange(10, 30) / 10)
 
-    except:
-        return False
+        res = getBlockchain(URL, PORT)
+        newBlocks = ast.literal_eval(res.text)[-num:]  # last 'num' element(s)
 
-    return True
+    except:
+        return False, []
+
+    return True, newBlocks
 
 
 # Todo: Timeout
-def check(URL, PORT, num=1):
+def check(URL, PORT, NewBlocks, num=1):
     """
     :return: error occurs-False- or not-True-.
     """
     try:
-        res = getBlockchain(URL, PORT)
-        blocks = ast.literal_eval(res.text)  # list
+        blocks = NewBlocks
 
-        tmp_prevHash = "0000000000000000000000000000000000000000000000000000000000000000"
-        tmp_timestamp = 0
+        res = getBlockchain(URL, PORT)
+        fullBlocks = ast.literal_eval(res.text)
+
+        height = len(fullBlocks)
+
+        if height == 1:
+            tmp_prevHash = "0000000000000000000000000000000000000000000000000000000000000000"
+            tmp_timestamp = 0
+        else:
+            oldBlock = fullBlocks[-num]
+            tmp_prevHash = oldBlock["previousHash"]
+            tmp_timestamp = oldBlock["timestamp"]
 
         for i in range(num):
             index = str(blocks[i]["index"])
@@ -47,7 +59,7 @@ def check(URL, PORT, num=1):
             hash = blocks[i]["hash"]
 
             # Is index valid?
-            assert (index == str(i))
+            assert (index == str(height - num + i))
 
             # Is previousHash valid?
             assert (previousHash == tmp_prevHash)

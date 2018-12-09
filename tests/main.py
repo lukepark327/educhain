@@ -1,5 +1,3 @@
-from time import sleep
-
 if __name__ == '__main__':
     tests = []
 
@@ -18,8 +16,5 @@ if __name__ == '__main__':
         pass_cnt += pass_cnt_per_test
         total_cnt += total_cnt_per_test
 
-        sleep(1)
-
     # print test results
-    print("")
-    print(str(pass_cnt) + " / " + str(total_cnt) + " tests pass")
+    print(str(total_cnt - pass_cnt) + " of " + str(total_cnt) + " tests failed.")

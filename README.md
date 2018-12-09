@@ -1,6 +1,8 @@
 # instructional-blockchain
 blockchain simulator :: based on one-chain
 
+![symbol](https://github.com/twodude/instructional-blockchain/blob/master/images/symbol.png)
+
 ## ref
 https://github.com/twodude/onechain   
 https://github.com/tomalex0/node-circular-dependcy   

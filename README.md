@@ -13,7 +13,8 @@
 > Based on [one-chain](https://github.com/twodude/onechain)   
 
 ## Abstract
-```instructional-blockchain``` is a simple blockchain implementation for educational purpose. It supports generating blocks, varifying blocks, mining blocks, consensus about conflicting chains, connecting peers, and various wallet functions. Like Pintos, simple operating system framework for the 80x86 architecture, ```instructional-blockchain``` is intended to introduce undergraduates to concepts in blockchain core design and implementation.
+```instructional-blockchain``` is a simple blockchain implementation for educational purpose. It supports generating blocks, varifying blocks, mining blocks, consensus about conflicting chains, connecting peers, and various wallet functions. Like
+*Pintos*, simple operating system framework for the 80x86 architecture, ```instructional-blockchain``` is intended to introduce undergraduates to concepts in blockchain core design and implementation.
 
 Blockchain core and its accompanying parts are written in Node.js. Testing or simulating parts are written in Python.
 

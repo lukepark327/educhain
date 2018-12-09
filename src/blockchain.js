@@ -121,16 +121,16 @@ function addBlock(newBlock) {
 // validation test of new block
 function isValidNewBlock(newBlock, previousBlock) {
     if (previousBlock.index + 1 !== newBlock.index) {
-        console.log("Invalid index");
+        // console.log("Invalid index");
         return false;
     }
     else if (previousBlock.hash !== newBlock.previousHash) {
-        console.log("Invalid previoushash");
+        // console.log("Invalid previoushash");
         return false;
     }
     else if (calculateHashForBlock(newBlock) !== newBlock.hash) {
-        console.log(typeof (newBlock.hash) + " " + typeof calculateHashForBlock(newBlock));
-        console.log("Invalid hash: " + calculateHashForBlock(newBlock) + " " + newBlock.hash);
+        // console.log(typeof (newBlock.hash) + " " + typeof calculateHashForBlock(newBlock));
+        // console.log("Invalid hash: " + calculateHashForBlock(newBlock) + " " + newBlock.hash);
         return false;
     }
     return true;
@@ -159,11 +159,11 @@ function replaceChain(newBlocks) {
     if (isValidChain(newBlocks) && newBlocks.length > blockchain.length) {
         const nw = require("./network");
 
-        console.log("Received blockchain is valid. Replacing current blockchain with received blockchain");
+        // console.log("Received blockchain is valid. Replacing current blockchain with received blockchain");
         blockchain = newBlocks;
         nw.broadcast(nw.responseLatestMsg());
     } else {
-        console.log("Received blockchain invalid");
+        // console.log("Received blockchain invalid");
     }
 }
 

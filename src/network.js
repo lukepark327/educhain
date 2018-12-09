@@ -20,7 +20,7 @@ function getSockets() { return sockets; }
 function initP2PServer() {
     const server = new WebSocket.Server({ port: p2p_port });
     server.on("connection", function (ws) { initConnection(ws) });    
-    console.log("Listening websocket p2p port on: " + p2p_port);
+    // console.log("Listening websocket p2p port on: " + p2p_port);
 }
 
 function initConnection(ws) {
@@ -33,7 +33,7 @@ function initConnection(ws) {
 function initMessageHandler(ws) {
     ws.on("message", function (data) {
         const message = JSON.parse(data);
-        console.log("Received message" + JSON.stringify(message));
+        // console.log("Received message" + JSON.stringify(message));
         switch (message.type) {
             case MessageType.QUERY_LATEST:
                 write(ws, responseLatestMsg());
@@ -49,7 +49,7 @@ function initMessageHandler(ws) {
 }
 
 function closeConnection(ws) {
-    console.log("Connection failed to peer: " + ws.url);
+    // console.log("Connection failed to peer: " + ws.url);
     sockets.splice(sockets.indexOf(ws), 1);
 }
 
@@ -63,7 +63,7 @@ function connectToPeers(newPeers) {
         const ws = new WebSocket(peer);
         ws.on("open", function () { initConnection(ws) });
         ws.on("error", function () {
-            console.log("Connection failed");
+            // console.log("Connection failed");
         });
     });
 }
@@ -74,24 +74,24 @@ function handleBlockchainResponse(message) {
     const latestBlockHeld = bc.getLatestBlock();
 
     if (latestBlockReceived.index > latestBlockHeld.index) {
-        console.log("Blockchain possibly behind. We got: " + latestBlockHeld.index + " Peer got: " + latestBlockReceived.index);
+        // console.log("Blockchain possibly behind. We got: " + latestBlockHeld.index + " Peer got: " + latestBlockReceived.index);
         if (latestBlockHeld.hash === latestBlockReceived.previousHash) {
-            console.log("We can append the received block to our chain");
+            // console.log("We can append the received block to our chain");
             if (bc.addBlock(latestBlockReceived)) {
                 broadcast(responseLatestMsg());
             }
         }
         else if (receivedBlocks.length === 1) {
-            console.log("We have to query the chain from our peer");
+            // console.log("We have to query the chain from our peer");
             broadcast(queryAllMsg());
         }
         else {
-            console.log("Received blockchain is longer than current blockchain");
+            // console.log("Received blockchain is longer than current blockchain");
             bc.replaceChain(receivedBlocks);
         }
     }
     else {
-        console.log("Received blockchain is not longer than current blockchain. Do nothing");
+        // console.log("Received blockchain is not longer than current blockchain. Do nothing");
     }
 }
 

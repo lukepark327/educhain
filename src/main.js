@@ -23,7 +23,7 @@ function initHttpServer() {
         const newBlock = bc.generateNextBlock(req.body.data || "");
         bc.addBlock(newBlock);
         nw.broadcast(nw.responseLatestMsg());
-        console.log("Block added: " + JSON.stringify(newBlock));
+        // console.log("Block added: " + JSON.stringify(newBlock));
         res.send();
     });
     app.get("/peers", function (req, res) {
@@ -50,7 +50,9 @@ function initHttpServer() {
         res.send({ "msg": "Stopping server" });
         process.exit();
     });
-    app.listen(http_port, function () { console.log("Listening http port on: " + http_port) });
+    app.listen(http_port, function () {
+        // console.log("Listening http port on: " + http_port)
+    });
 }
 
 // main

@@ -26,10 +26,26 @@ in 2018.
 
 
 
+
+
 ## Details
 
+For example, a ```./tests/test1/main.py``` file describes following situation:
 
+1. Check each peer's genesis block   
+2. Generate new blocks on each peer   
+    1. 2 blocks on peer #1   
+    2. 4 blocks on peer #2   
+    3. 2 blocks on peer #3   
+3. Connect peers   
+    1. peer #1 with #2 (1->2)   
+    2. peer #1 with #3 (1->(2 and 3))   
+4. Generate new blocks   
+    1. 3 blocks on peer #1   
+    2. 5 blocks on peer #3   
+5. Stop all peers   
 
+The above simulator tests each situation step by step.
 
 ## Environments
 Blockchain core and its accompanying parts are written in Node.js. Testing or simulating parts are written in Python.
@@ -39,6 +55,54 @@ Blockchain core and its accompanying parts are written in Node.js. Testing or si
 ## How to Use
 [![video](http://img.youtube.com/vi/6L_c4Ug-KwE/0.jpg)](https://www.youtube.com/watch?v=6L_c4Ug-KwE)   
 > Click on the image above to play the video.
+
+### Run node independently
+* move ```./src```
+```
+cd ./src
+```
+
+* install required modules
+```
+npm install
+```
+See [```./src/package.json```](https://github.com/twodude/instructional-blockchain/blob/master/src/package.json)'s 'dependencies' field if you wonder.
+
+* start node
+```
+npm start
+```
+Visit the [one-chain](https://github.com/twodude/onechain) repository to read more details.
+
+### Testing and Scoring
+* move ```./tests```
+```
+cd tests
+```
+
+* run test program
+```
+python main.py
+```
+
+## Trouble Shootings
+* if
+*```ImportError: No module named requests```*
+occurs:
+```
+pip install requests
+```
+
+* if 
+*```Error: listen EADDRINUSE :::3001```*
+occurs:
+```
+killall npm
+```
+*or*
+```
+taskkill /im node.exe /F
+```
 
 ## References
 > https://github.com/twodude/onechain   

@@ -28,7 +28,10 @@ in 2018.
 
 The simulator written in python automatically tests your code(s) and provides you some feedback:
 **pass/FAIL**
-in all possible situations. You can challenge filling in the blanks [here](https://github.com/twodude/instructional-blockchain/tree/problem). Also you can see the answer [here](https://github.com/twodude/instructional-blockchain/tree/solution)
+in all possible situations. You can challenge filling in the blanks at below branch. Also you can see an answer.
+
+* [Goto the problem branch](https://github.com/twodude/instructional-blockchain/tree/problem)
+* [Goto the Answer branch](https://github.com/twodude/instructional-blockchain/tree/solution)
 
 ## Details
 

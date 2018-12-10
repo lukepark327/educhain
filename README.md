@@ -28,10 +28,10 @@ in 2018.
 
 The simulator written in python automatically tests your code(s) and provides you some feedback
 **-pass/FAIL-**
-in all possible situations. You can challenge filling in the blanks at below branch. Also you can see an answer.
+in all possible situations.
 
 * [Goto the problem branch](https://github.com/twodude/instructional-blockchain/tree/problem)
-* [Goto the Answer branch](https://github.com/twodude/instructional-blockchain/tree/solution)
+* [Goto the solution branch](https://github.com/twodude/instructional-blockchain/tree/solution)
 
 ## Details
 

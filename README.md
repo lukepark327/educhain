@@ -30,8 +30,8 @@ The simulator written in python automatically tests your code(s) and provides yo
 **-pass/FAIL-**
 in all possible situations.
 
-* [Goto the problem branch](https://github.com/twodude/instructional-blockchain/tree/problem)
-* [Goto the solution branch](https://github.com/twodude/instructional-blockchain/tree/solution)
+* [Goto the problem branch](https://github.com/twodude/instructional-blockchain/blob/problem/src/blockchain.js)
+* [Goto the solution branch](https://github.com/twodude/instructional-blockchain/blob/solution/src/blockchain.js)
 
 ## Details
 

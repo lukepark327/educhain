@@ -111,7 +111,7 @@ taskkill /im node.exe /F
 
 # References
 > https://github.com/twodude/onechain   
-> https://web.stanford.edu/class/cs140/projects/pintos/pintos_1.html#SEC1   
+> https://web.stanford.edu/class/cs140/projects/pintos/pintos.html#SEC_Top   
 
 # License
 > The instructional-blockchain project is licensed under the [Apache License, Version 2.0](https://opensource.org/licenses/Apache-2.0), also included in our repository in the [LICENSE](https://github.com/twodude/instructional-blockchain/blob/master/LICENSE) file.

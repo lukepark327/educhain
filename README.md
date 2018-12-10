@@ -24,9 +24,7 @@ in 2018.
 
 ![diagram](https://github.com/twodude/instructional-blockchain/blob/master/images/overview.png)
 
-
-
-
+Fill in the blanks, simulate your own code, check the score, and modify it. 
 
 ## Details
 

@@ -47,16 +47,16 @@ For example, a ```./tests/test1/main.py``` file describes following situation:
 
 The above simulator tests each situation step by step.
 
+# How to Use
+[![video](http://img.youtube.com/vi/6L_c4Ug-KwE/0.jpg)](https://www.youtube.com/watch?v=6L_c4Ug-KwE)   
+> Click on the image above to play the video.
+
 ## Environments
 Blockchain core and its accompanying parts are written in Node.js. Testing or simulating parts are written in Python.
 - Node.js v8.11.3 (>=4.3.2)
 - Python 3.7.1 
 
-## How to Use
-[![video](http://img.youtube.com/vi/6L_c4Ug-KwE/0.jpg)](https://www.youtube.com/watch?v=6L_c4Ug-KwE)   
-> Click on the image above to play the video.
-
-### Run node independently
+## Run node independently
 * move ```./src```
 ```
 cd ./src
@@ -74,7 +74,7 @@ npm start
 ```
 Visit the [one-chain](https://github.com/twodude/onechain) repository to read more details.
 
-### Testing and Scoring
+## Testing and Scoring
 * move ```./tests```
 ```
 cd tests
@@ -104,9 +104,9 @@ killall npm
 taskkill /im node.exe /F
 ```
 
-## References
+# References
 > https://github.com/twodude/onechain   
 > https://web.stanford.edu/class/cs140/projects/pintos/pintos_1.html#SEC1   
 
-## License
+# License
 > The instructional-blockchain project is licensed under the [Apache License, Version 2.0](https://opensource.org/licenses/Apache-2.0), also included in our repository in the [LICENSE](https://github.com/twodude/instructional-blockchain/blob/master/LICENSE) file.

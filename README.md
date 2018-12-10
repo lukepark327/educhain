@@ -24,7 +24,9 @@ in 2018.
 
 ![diagram](https://github.com/twodude/instructional-blockchain/blob/master/images/overview.png)
 
-Fill in the blanks, simulate your own code, check the score, and modify it. 
+Fill in the blanks, simulate your own code, check the score, and modify it. The simulator written in python tests your code and provides you feedback:
+**pass/FAIL**
+in all possible situations.
 
 ## Details
 

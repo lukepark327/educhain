@@ -26,8 +26,8 @@ in 2018.
 
 *Fill in the blanks, simulate your own code, check the score, and modify it.*
 
-The simulator written in python automatically tests your code(s) and provides you some feedback:
-**pass/FAIL**
+The simulator written in python automatically tests your code(s) and provides you some feedback
+**-pass/FAIL-**
 in all possible situations. You can challenge filling in the blanks at below branch. Also you can see an answer.
 
 * [Goto the problem branch](https://github.com/twodude/instructional-blockchain/tree/problem)

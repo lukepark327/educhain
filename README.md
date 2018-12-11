@@ -90,7 +90,7 @@ cd tests
 
 * run test program
 ```
-python main.py
+python3 main.py
 ```
 
 ## Trouble Shootings

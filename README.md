@@ -3,7 +3,7 @@
 [![node](https://img.shields.io/badge/node-%3E%3D4.3.2-yellow.svg)](https://nodejs.org/en/)
 [![python](https://img.shields.io/badge/python-3.7.1-blue.svg)](https://www.python.org)   
 
-# edu-chain :: Instructional-blockchain
+# edu-chain :: Instructional Blockchain
 
 ![symbol](https://github.com/twodude/educhain/blob/master/images/symbol.png)
 

@@ -16,7 +16,7 @@
 > Based on [one-chain](https://github.com/twodude/onechain)   
 
 ## Abstract
-```educhain``` is a simple blockchain implementation for educational purpose. It supports generating blocks, varifying blocks, mining blocks, consensus about conflicting chains, connecting peers, and various wallet functions, et al. Like
+```educhain``` is a simple blockchain implementation for educational purpose. It supports generating blocks, verifying blocks, mining blocks, consensus about conflicting chains, connecting peers, and various wallet functions, et al. Like
 *[Pintos](https://web.stanford.edu/class/cs140/projects/pintos/pintos.html)*, simple operating system framework for the 80x86 architecture, educhain project is intended to introduce undergraduates to concepts in blockchain core design and implementation.
 
 It was created at Sogang University's Blockchain Lab. by

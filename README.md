@@ -1,20 +1,20 @@
 [![license](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![version](https://img.shields.io/badge/version-1.0.0-red.svg)](https://github.com/twodude/instructional-blockchain)
+[![version](https://img.shields.io/badge/version-1.0.0-red.svg)](https://github.com/twodude/educhain)
 [![node](https://img.shields.io/badge/node-%3E%3D4.3.2-yellow.svg)](https://nodejs.org/en/)
 [![python](https://img.shields.io/badge/python-3.7.1-blue.svg)](https://www.python.org)   
 
-# instructional-blockchain
+# edu-chain :: Instructional-blockchain
 
-![symbol](https://github.com/twodude/instructional-blockchain/blob/master/images/symbol.png)
+![symbol](https://github.com/twodude/educhain/blob/master/images/symbol.png)
 
-```instructional-blockchain``` is an automated testing software.
+```educhain``` is an automated testing software.
 > The main project of
 **Sogang Univ. Blockchain Lab.**   
 > Based on [one-chain](https://github.com/twodude/onechain)   
 
 ## Abstract
-```instructional-blockchain``` is a simple blockchain implementation for educational purpose. It supports generating blocks, varifying blocks, mining blocks, consensus about conflicting chains, connecting peers, and various wallet functions, et al. Like
-*[Pintos](https://web.stanford.edu/class/cs140/projects/pintos/pintos.html)*, simple operating system framework for the 80x86 architecture, instructional-blockchain project is intended to introduce undergraduates to concepts in blockchain core design and implementation.
+```educhain``` is a simple blockchain implementation for educational purpose. It supports generating blocks, varifying blocks, mining blocks, consensus about conflicting chains, connecting peers, and various wallet functions, et al. Like
+*[Pintos](https://web.stanford.edu/class/cs140/projects/pintos/pintos.html)*, simple operating system framework for the 80x86 architecture, educhain project is intended to introduce undergraduates to concepts in blockchain core design and implementation.
 
 It was created at Sogang University's Blockchain Lab. by
 **[Luke Park (Sanghyeon Park)](https://github.com/twodude)**
@@ -22,7 +22,7 @@ in 2018.
 
 ## Overview
 
-![diagram](https://github.com/twodude/instructional-blockchain/blob/master/images/overview.png)
+![diagram](https://github.com/twodude/educhain/blob/master/images/overview.png)
 
 *Fill in the blanks, simulate your own code, check the score, and modify it.*
 
@@ -30,8 +30,8 @@ The simulator written in python automatically tests your code(s) and provides yo
 **-pass/FAIL-**
 in all possible situations.
 
-* [Goto the problem branch](https://github.com/twodude/instructional-blockchain/blob/problem/src/blockchain.js)
-* [Goto the solution branch](https://github.com/twodude/instructional-blockchain/blob/solution/src/blockchain.js)
+* [Goto the problem branch](https://github.com/twodude/educhain/blob/problem/src/blockchain.js)
+* [Goto the solution branch](https://github.com/twodude/educhain/blob/solution/src/blockchain.js)
 
 ## Details
 
@@ -71,7 +71,7 @@ cd ./src
 ```
 npm install
 ```
-See [```./src/package.json```](https://github.com/twodude/instructional-blockchain/blob/master/src/package.json)'s 'dependencies' field if you wonder.
+See [```./src/package.json```](https://github.com/twodude/educhain/blob/master/src/package.json)'s 'dependencies' field if you wonder.
 
 * start node
 ```
@@ -114,4 +114,4 @@ taskkill /im node.exe /F
 > https://web.stanford.edu/class/cs140/projects/pintos/pintos.html#SEC_Top   
 
 # License
-> The instructional-blockchain project is licensed under the [Apache License, Version 2.0](https://opensource.org/licenses/Apache-2.0), also included in our repository in the [LICENSE](https://github.com/twodude/instructional-blockchain/blob/master/LICENSE) file.
+> The educhain project is licensed under the [Apache License, Version 2.0](https://opensource.org/licenses/Apache-2.0), also included in our repository in the [LICENSE](https://github.com/twodude/educhain/blob/master/LICENSE) file.

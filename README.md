@@ -5,7 +5,10 @@
 
 # edu-chain :: Instructional Blockchain
 
+![educhain_logo](https://github.com/twodude/educhain/blob/master/images/educhain_logo.png)
+<!--
 ![symbol](https://github.com/twodude/educhain/blob/master/images/symbol.png)
+-->
 
 ```educhain``` is an automated testing software.
 > The main project of

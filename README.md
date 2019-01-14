@@ -11,6 +11,7 @@
 -->
 
 ```educhain``` is an automated testing software.
+> The 6th D2 CAMPUS FEST Finalists   
 > The main project of
 **Sogang Univ. Blockchain Lab.**   
 > Based on [one-chain](https://github.com/twodude/onechain)   

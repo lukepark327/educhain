@@ -23,7 +23,7 @@ function getPublicFromWallet() {
         return key.getPublic().encode("hex");
     }
     else {
-        // console.log("No private key at: %s", privateKeyFile);
+        console.log("No private key at: %s", privateKeyFile);
         return "";
     }
 }
@@ -53,14 +53,14 @@ function initWallet() {
     // write file
     fs.writeFileSync(privateKeyFile, newPrivateKey);
 
-    // console.log("New wallet with private key created to: %s", privateKeyFile);
+    console.log("New wallet with private key created to: %s", privateKeyFile);
 }
 
 // create private key
 function createWallet() {
     // do not override existing private keys
     if (fs.existsSync(privateKeyFile)) {
-        // console.log("Wallet already exists at: %s", privateKeyFile);
+        console.log("Wallet already exists at: %s", privateKeyFile);
         return;
     }
 
@@ -77,7 +77,7 @@ function createWallet() {
     // write file
     fs.writeFileSync(privateKeyFile, newPrivateKey);
 
-    // console.log("New wallet with private key created to: %s", privateKeyFile);
+    console.log("New wallet with private key created to: %s", privateKeyFile);
 }
 
 // delete private key
@@ -89,7 +89,12 @@ function deleteWallet() {
         fs.rmdirSync(privateKeyLocation);
     }
 
-    // console.log("Wallet with private key removed to: %s", privateKeyFile);
+    console.log("Wallet with private key removed to: %s", privateKeyFile);
 }
 
-module.exports = { initWallet, getPublicFromWallet, createWallet, deleteWallet };
+module.exports = {
+    initWallet,
+    getPublicFromWallet,
+    createWallet,
+    deleteWallet
+};

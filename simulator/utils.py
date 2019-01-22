@@ -7,6 +7,9 @@ from daemon import start, killall
 def npm_decorator(num_node):
     def decorator(func):
         def wrapper(*args, **kwargs):
+            print(num_node)
+
+
             # npm start
             if not start(num_node):
                 print("[FAIL] npm start")

@@ -1,13 +1,24 @@
 import json
+import ast
 from requests import get, post
 
 
-def getBlockchain(URL, PORT):
-    op = "blocks"
-    target = URL + ":" + str(PORT) + '/' + op
+class Agent():
+    def __init__(self, URL, HTTP_PORT, P2P_PORT):
+        self.URL = URL
+        self.HTTP_PORT = str(HTTP_PORT)
+        self.P2P_PORT = str(P2P_PORT)
 
-    res = get(target)
-    return res
+    def getBlockchain(self):
+        op = "blocks"
+        target = self.URL + ":" + self.HTTP_PORT + '/' + op
+
+        res = get(target)
+        return ast.literal_eval(res.text)
+
+
+
+
 
 
 def addNewBlock(URL, PORT, req=""):
@@ -19,6 +30,9 @@ def addNewBlock(URL, PORT, req=""):
     res = post(target, data=json.dumps(data), headers=headers)
 
     return res
+
+
+
 
 
 def getPeers(URL, PORT):

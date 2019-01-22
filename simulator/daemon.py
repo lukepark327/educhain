@@ -14,7 +14,7 @@ def start(total):
     """
 
     # move src dir.
-    os.chdir("../src")
+    os.chdir("../onechain")
 
     # npm install
     os.system("npm install --silent")  # sequentially

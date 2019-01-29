@@ -27,6 +27,9 @@ class Daemon:
         # sequentially
         os.system("npm install --silent")
 
+        # start the master node
+        self.start_master_node()
+
         # number of total node(s)
         for num in range(self.n_nodes):
             try:
@@ -39,7 +42,7 @@ class Daemon:
                 if self.is_windows:
                     os.system("START /B npm start --silent")
                 else:
-                    os.system("nohup npm start --silent&")
+                    os.system("nohup npm start --silent &")
 
             except:
                 return False
@@ -57,6 +60,30 @@ class Daemon:
                 os.system("taskkill /im node.exe /F")
             else:
                 os.system("killall npm")
+
+        except:
+            return False
+
+        return True
+
+    def start_master_node(self):
+        """
+        HTTP_PORT = 3000
+        P2P_PORT = 6000
+
+        :return: error occurs-False- or not-True-.
+        """
+        try:
+            # setting env.
+            os.environ['HTTP_PORT'] = str(3000)
+            os.environ['P2P_PORT'] = str(6000)
+
+            # npm start
+            # background execution
+            if self.is_windows:
+                os.system("START /B npm start --silent")
+            else:
+                os.system("nohup npm start --silent &")
 
         except:
             return False

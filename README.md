@@ -5,7 +5,7 @@
 
 # edu-chain :: Instructional Blockchain
 
-![educhain_logo](https://github.com/twodude/educhain/blob/master/images/educhain_logo.png)
+![educhain_logo](https://github.com/twodude/educhain/blob/v1.0.0/images/educhain_logo.png)
 <!--
 ![symbol](https://github.com/twodude/educhain/blob/master/images/symbol.png)
 -->
@@ -29,7 +29,7 @@ in 2018.
 
 ## Overview
 
-![diagram](https://github.com/twodude/educhain/blob/master/images/overview.png)
+![diagram](https://github.com/twodude/educhain/blob/v1.0.0/images/overview.png)
 
 *Fill in the blanks, simulate your own code, check the score, and modify it.*
 
@@ -78,7 +78,7 @@ cd ./src
 ```
 npm install
 ```
-See [```./src/package.json```](https://github.com/twodude/educhain/blob/master/src/package.json)'s 'dependencies' field if you wonder.
+See [```./src/package.json```](https://github.com/twodude/educhain/blob/v1.0.0/src/package.json)'s 'dependencies' field if you wonder.
 
 * start node
 ```
@@ -121,4 +121,4 @@ taskkill /im node.exe /F
 - https://web.stanford.edu/class/cs140/projects/pintos/pintos.html#SEC_Top   
 
 # License
-The educhain project is licensed under the [Apache License, Version 2.0](https://opensource.org/licenses/Apache-2.0), also included in our repository in the [LICENSE](https://github.com/twodude/educhain/blob/master/LICENSE) file.
+The educhain project is licensed under the [Apache License, Version 2.0](https://opensource.org/licenses/Apache-2.0), also included in our repository in the [LICENSE](https://github.com/twodude/educhain/blob/v1.0.0/LICENSE) file.

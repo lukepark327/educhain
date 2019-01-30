@@ -11,7 +11,7 @@ from pprint import pprint
 
 # define
 IP = "http://127.0.0.1"
-tmp_time = 0.5
+tmp_time = 5
 SEED = 950327
 
 
@@ -28,21 +28,42 @@ if __name__ == '__main__':
     args = argparser()
 
     # daemon
-    daemon = Daemon(args)
-    daemon.start()
-    sleep(tmp_time)
+    try:
+        daemon = Daemon(args)
+        daemon.start()
+        sleep(tmp_time)  # need for safe running with bash op(s).
 
-    # agent
-    agents = [Agent(args, IP, args.https + i, args.p2ps + i) for i in range(args.nodes)]
-    sleep(tmp_time)
+        # agent
+        agents = [Agent(IP, args.https + i, args.p2ps + i) for i in range(args.nodes)]
+        sleep(tmp_time)
 
-    # environment
-    env = Env(args, agents)
-    sleep(tmp_time)
+        # environment
+        env = Env(args, agents)
 
-    """tmp"""
-    sleep(1)  # temporary
-    """tmp"""
+        """connect"""
+        # connect with neighbors
+        for agent in agents:
+            agent.set_virtual_peers(env)
 
-    # ToDo: exception handling about error occuring
-    daemon.killall()
+        # set propagation delay for each pair of connected peers
+        env.set_prop_delay_table()
+
+
+
+
+
+
+
+        """tmp"""
+        sleep(1)  # temporary
+
+        pprint(env.prop_delay_table)
+
+        for agent in agents:
+            print(agent.uri, agent.virtual_peers)
+
+
+        """tmp"""
+
+    finally:
+        daemon.killall()

@@ -40,7 +40,7 @@ if __name__ == '__main__':
         # environment
         env = Env(args, agents)
 
-        """connect"""
+        """virtual connect"""
         # connect with neighbors
         for agent in agents:
             agent.set_virtual_peers(env)
@@ -48,11 +48,16 @@ if __name__ == '__main__':
         # set propagation delay for each pair of connected peers
         env.set_prop_delay_table()
 
+        # ToDo: Visualization of network with propagation delay
 
+        """set master node connection"""
 
+        """create and propagate blocks"""
 
-
-
+        """analysis"""
+        # 각 에이전트의 블록 생성 비율, 채택 비율
+        # tps (마스터노드를 통과하는 초당 블록의 갯수)
+        # 포크 발생 비율
 
         """tmp"""
         sleep(1)  # temporary
@@ -61,8 +66,6 @@ if __name__ == '__main__':
 
         for agent in agents:
             print(agent.uri, agent.virtual_peers)
-
-
         """tmp"""
 
     finally:

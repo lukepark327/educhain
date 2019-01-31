@@ -88,4 +88,6 @@ class Daemon:
         except:
             return False
 
+        # ToDo: return master node's agent
+
         return True

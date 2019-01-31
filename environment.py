@@ -20,6 +20,9 @@ class Env:
         # prop_delay_table[_from][_to]: propagation delay table (_from)->(_to)
         self.prop_delay_table = {}
 
+        # reorg ratio
+        self.reorg_count = 0
+
     def assign_virtual_peers(self, agent):
         id = agent.p2p_port - self.args.p2ps
         peers = []

@@ -10,7 +10,7 @@
 ![symbol](https://github.com/twodude/educhain/blob/master/images/symbol.png)
 -->
 
-```educhain``` is an automated testing software.
+```educhain``` is an automated testing software which can be used general purpose.
 
 ```#blockchain``` ```#simulator``` ```#testing-tools``` ```#test-automation```
 
@@ -18,6 +18,7 @@
 > The main project of
 **Sogang Univ. Blockchain Lab.**   
 > Based on [one-chain](https://github.com/twodude/onechain)   
+> Based on [blockchain-simulator](https://github.com/twodude/blockchain-simulator)   
 
 ## Abstract
 ```educhain``` is a simple blockchain implementation for educational purpose. It supports generating blocks, verifying blocks, mining blocks, consensus about conflicting chains, connecting peers, and various wallet functions, et al. Like

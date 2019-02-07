@@ -42,6 +42,9 @@ Most of the code is written in a pseudo-code style to provide understanding by o
 ## edu-chain
 - [Instructional Blockchain](https://github.com/twodude/educhain)   
 
+## Plasma DAG
+- [Ethereum Plasma Chain](https://github.com/plasma-dag/plasma-client)
+
 # How to Start
 
 ## Environments
@@ -146,4 +149,4 @@ curl -X POST http://127.0.0.1:3001/stop
 ```
 
 # License
-The onechain project is licensed under the [Apache License, Version 2.0](https://opensource.org/licenses/Apache-2.0), also included in our repository in the [LICENSE](https://github.com/JOYUJEONG/onechain/blob/master/LICENSE) file.
+The one-chain project is licensed under the [Apache License, Version 2.0](https://opensource.org/licenses/Apache-2.0), also included in our repository in the [LICENSE](https://github.com/JOYUJEONG/onechain/blob/master/LICENSE) file.

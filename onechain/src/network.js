@@ -35,6 +35,8 @@ function initConnection(ws) {
 function initMessageHandler(ws) {
     ws.on("message", function (data) {
         const message = JSON.parse(data);
+
+        // console.log(ws._socket.remoteAddress + ':' + ws._socket.remotePort);
         console.log("Received message" + JSON.stringify(message));
         switch (message.type) {
             case MessageType.QUERY_LATEST:
@@ -70,6 +72,10 @@ function connectToPeers(newPeers) {
     );
 }
 
+/**
+ * Current implementation treats the full block which includes header and body fields.
+ * ToDo: Use block header fields only if you just need to comparison.
+ */
 function handleBlockchainResponse(message) {
     const receivedBlocks = JSON.parse(message.data);
     const latestBlockReceived = receivedBlocks[receivedBlocks.length - 1];

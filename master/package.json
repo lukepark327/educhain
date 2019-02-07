@@ -1,0 +1,22 @@
+{
+  "name": "onechain",
+  "version": "2.1.0",
+  "description": "",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/twodude/onechain.git"
+  },
+  "scripts": {
+    "start": "node src/main.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.16.4",
+    "sleep": "^6.0.0",
+    "ws": "^1.1.0"
+  },
+  "engines": {
+    "node": ">=4.3.2"
+  }
+}

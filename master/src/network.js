@@ -9,6 +9,18 @@ var sockets = [];
 
 function getSockets() { return sockets; }
 
+// propagation delay table
+var table = setTable()
+
+function getTable() { return table; }
+function setTable() {
+    const fs = require("fs");
+
+    const packageJson = fs.readFileSync("../table.json");
+    const table = JSON.parse(packageJson);
+    return table;
+}
+
 function initP2PServer() {
     // websocket server
     // P2P's peer works both server side and client side.
@@ -34,51 +46,32 @@ function initMessageHandler(ws) {
         /**
          * propagation delay
          */
-        var timeout = 0;  // milli-seconds
+        var from = ws._socket.remotePort.toString()
 
-        switch (ws._socket.remotePort) {
+        // ToDo: use IP address instead of 127.0.0.1 (localhost)
+        var neighbors = table[from].map(function (s) {
+            return s[0].toString();
+        });
+        // console.log(neighbors)
+
+        var delay = table[from].map(function (s) {
+            return s[1];
+        });
+        // console.log(delay)
+
+        neighbors.forEach(function (neighbor, idx) {
+            var timeout = delay[idx] * 1000.0;  // milli-seconds * 1000.0
             
-            case 6001:
-                /**
-                 * ToDo: load delay from table.
-                 */
-                timeout = 3000;
-                break;
-            
-            case 6002:
-                timeout = 2000;
-                break;
-
-        }
-
-        setTimeout(function () {
-            switch (ws._socket.remotePort) {
-                
-                case 6001:
-                    /**
-                     * find a target socket in sockets.
-                     * send massage to the target socket.
-                     * 
-                     * ToDo: send massage to target socket's'.
-                     */
-                    write(sockets.find(function(elem){
-                        return elem.url.split(':')[2] == "6002";
-                    }), message);
-                    console.log("Send message to " + 6002);
-                    break;
-                
-                case 6002:
-                    write(sockets.find(function(elem){
-                        return elem.url.split(':')[2] == "6001";
-                    }), message);
-                    console.log("Send message to " + 6001);
-                    break;
-
-            }
-        }, timeout);
+            setTimeout(function () {
+                write(sockets.find(function(elem){
+                    return elem.url.split(':')[2] == neighbor;
+                }), message);
+                console.log("Send message to " + neighbor);
+            }, timeout);
+        });
 
         /**
-         * Do not use the code below. 비동기가 아님.
+         * Do not use 'sleep()'. 비동기가 아님.
          */
         /*
             const sleep = require("sleep");
@@ -109,22 +102,9 @@ function connectToPeers(newPeers) {
 
 function write(ws, message) { ws.send(JSON.stringify(message)); }
 
-function broadcast(message) {
-    sockets.forEach(function (socket) {
-        write(socket, message);
-    });
-}
-
-function multicast(peers, message) {
-    peers.forEach(function (socket) {
-        write(socket, message);
-    });
-}
-
 module.exports = {
     connectToPeers,
     getSockets,
-    broadcast,
-    multicast,
+    getTable,
     initP2PServer
 };

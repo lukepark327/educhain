@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-npm install ./onechain/ &
-npm install ./master/ &
-npm install ./mallcious/ &
+nohup npm install ./onechain/ --silent
+nohup npm install ./master/ --silent
+nohup npm install ./mallcious/ --silent

@@ -66,3 +66,5 @@ function getAllPeers() {
 nw.connectToPeers(initialPeers);
 initHttpServer();
 nw.initP2PServer();
+
+// console.log(nw.getTable());

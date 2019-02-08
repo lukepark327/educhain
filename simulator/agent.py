@@ -37,9 +37,9 @@ class Agent:
             # npm start
             # background execution
             if is_windows():
-                os.system("START /B npm start --silent")
+                os.system("START /B npm start")
             else:
-                os.system("nohup npm start --silent &")
+                os.system("npm start &")
 
         finally:
             os.chdir("../")

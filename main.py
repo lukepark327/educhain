@@ -59,7 +59,7 @@ if __name__ == '__main__':
         # 포크 발생 비율
 
     finally:
-        sleep(args.sleep)
+        sleep(args.sleep * 100)
 
         if is_windows():
             os.system("taskkill /im node.exe /F")

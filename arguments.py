@@ -23,5 +23,9 @@ def argparser():
     parser.add_argument('--neighbors', type=int, default=8,
                         help='Each node initiates links to the amount of \'neighbors\' selected neighbors.')
 
+    """hyperparameters"""
+    parser.add_argument('--sleep', type=float, default=0.5,
+                        help='The interval between specific lines.')
+
     args = parser.parse_args()
     return args

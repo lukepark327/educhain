@@ -1,23 +1,22 @@
-from daemon import Daemon
-from agent import Agent
-from environment import Env
+from simulator import agent, environment, virtual_network
 from arguments import argparser
-import json
 
+from platform import system
+import json
+import os
 from time import sleep
 import random
 import numpy as np
 from pprint import pprint
 
 
+def is_windows():
+    return True if system() == "Windows" else False
+
+
 # define
 IP = "http://127.0.0.1"
-tmp_time = 5
 SEED = 950327
-
-
-def run():
-    pass
 
 
 if __name__ == '__main__':
@@ -33,30 +32,20 @@ if __name__ == '__main__':
     # argparser
     args = argparser()
 
-    # daemon
     try:
-        daemon = Daemon(args)
-        daemon.start()
-        sleep(tmp_time)  # need for safe running with bash op(s).
-
         # agent
-        agents = [Agent(IP, args.https + i, args.p2ps + i) for i in range(args.nodes)]
-        sleep(tmp_time)
+        agents = [agent.Agent(IP, args.https + i, args.p2ps + i) for i in range(args.nodes)]
 
         # environment
-        env = Env(args, agents)
+        env = environment.Env(args)
 
-        """virtual connect"""
-        # connect with neighbors
-        for agent in agents:
-            agent.set_virtual_peers(env)
-
-        # set propagation delay for each pair of connected peers
-        env.set_prop_delay_table()
+        """virtual network"""
+        vnet = virtual_network.Vnet(args, agents)
+        # pprint(vnet.virtual_connections)
 
         # save propagation delay table
         with open('table.json', 'w') as f:
-            json.dump(env.prop_delay_table, f)
+            json.dump(vnet.virtual_connections, f)
 
         # ToDo: Visualization of network with propagation delay
 
@@ -69,14 +58,10 @@ if __name__ == '__main__':
         # tps (마스터노드를 통과하는 초당 블록의 갯수)
         # 포크 발생 비율
 
-        """tmp"""
-        sleep(10)  # temporary
-
-        pprint(env.prop_delay_table)
-
-        for agent in agents:
-            print(agent.uri, agent.virtual_peers)
-        """tmp"""
-
     finally:
-        daemon.killall()
+        sleep(args.sleep)
+
+        if is_windows():
+            os.system("taskkill /im node.exe /F")
+        else:
+            os.system("killall npm")

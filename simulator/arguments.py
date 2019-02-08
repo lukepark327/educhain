@@ -21,7 +21,7 @@ def argparser():
                         help='The standard deviation of propagation delay. (milliseconds)')
 
     parser.add_argument('--neighbors', type=int, default=8,
-                        help='Each node initiates links to \'neighbors\' selected neighbors.s')
+                        help='Each node initiates links to the amount of \'neighbors\' selected neighbors.')
 
     args = parser.parse_args()
     return args

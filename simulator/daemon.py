@@ -1,5 +1,9 @@
 from platform import system
 import os
+from time import sleep
+
+
+tmp_time = 0.5
 
 
 class Daemon:
@@ -27,11 +31,10 @@ class Daemon:
         # sequentially
         os.system("npm install --silent")
 
-        # start the master node
-        self.start_master_node()
-
         # number of total node(s)
         for num in range(self.n_nodes):
+            sleep(tmp_time)
+
             try:
                 # setting env.
                 os.environ['HTTP_PORT'] = str(self.http_base + num)
@@ -46,6 +49,10 @@ class Daemon:
 
             except:
                 return False
+
+            finally:
+                # os.chdir("../")
+                pass
 
         return True
 
@@ -74,6 +81,7 @@ class Daemon:
         :return: error occurs-False- or not-True-.
         """
         try:
+            """
             # setting env.
             os.environ['HTTP_PORT'] = str(3000)
             os.environ['P2P_PORT'] = str(6000)
@@ -84,7 +92,8 @@ class Daemon:
                 os.system("START /B npm start --silent")
             else:
                 os.system("nohup npm start --silent &")
-
+            """
+            pass
         except:
             return False
 

@@ -2,6 +2,7 @@ from daemon import Daemon
 from agent import Agent
 from environment import Env
 from arguments import argparser
+import json
 
 from time import sleep
 import random
@@ -20,6 +21,11 @@ def run():
 
 
 if __name__ == '__main__':
+    # ToDo: Connect all peers with a master node.
+    # ToDo: Make blocks randomly
+    # ToDo: Offer the dashboard with tensorboardX
+    # ToDo: Master node implementation
+
     # random seed
     random.seed(SEED)
     np.random.seed(SEED)
@@ -48,6 +54,10 @@ if __name__ == '__main__':
         # set propagation delay for each pair of connected peers
         env.set_prop_delay_table()
 
+        # save propagation delay table
+        with open('table.json', 'w') as f:
+            json.dump(env.prop_delay_table, f)
+
         # ToDo: Visualization of network with propagation delay
 
         """set master node connection"""
@@ -60,7 +70,7 @@ if __name__ == '__main__':
         # 포크 발생 비율
 
         """tmp"""
-        sleep(1)  # temporary
+        sleep(10)  # temporary
 
         pprint(env.prop_delay_table)
 

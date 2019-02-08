@@ -1,3 +1,8 @@
+/**
+ * ToDo: make malicious node
+ * ToDo: make light client
+ */
+
 "use strict";
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -6,6 +11,12 @@ const nw = require("./network");
 
 // set environment variable
 const http_port = process.env.HTTP_PORT || 3000;
+
+/**
+ * precondition
+ * 
+ * 1. all the other nodes are available.
+ */
 const initialPeers = process.env.PEERS ? process.env.PEERS.split(',') : [];  // > $env:PEERS = "ws://127.0.0.1:6001, ws://127.0.0.1:6002"
 
 // RESTful

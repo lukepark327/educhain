@@ -28,7 +28,8 @@ function initMessageHandler(ws) {
         const message = JSON.parse(data);
 
         // console.log(ws._socket.remoteAddress + ':' + ws._socket.remotePort);
-        console.log("Received message" + JSON.stringify(message));
+        // console.log("Received message" + JSON.stringify(message));
+        console.log("Received message from " + ws._socket.remotePort);
 
         /**
          * propagation delay
@@ -36,20 +37,46 @@ function initMessageHandler(ws) {
         var timeout = 0;  // milli-seconds
 
         switch (ws._socket.remotePort) {
-            case 6002:
-                timeout=5000;
-                break;
+            
             case 6001:
-                timeout=10000;
+                /**
+                 * ToDo: load delay from table.
+                 */
+                timeout = 3000;
                 break;
+            
+            case 6002:
+                timeout = 2000;
+                break;
+
         }
 
         setTimeout(function () {
-            
-            console.log(ws._socket.remotePort);
-            console.log("Do multicast")
+            switch (ws._socket.remotePort) {
+                
+                case 6001:
+                    /**
+                     * find a target socket in sockets.
+                     * send massage to the target socket.
+                     * 
+                     * ToDo: send massage to target socket's'.
+                     */
+                    write(sockets.find(function(elem){
+                        return elem.url.split(':')[2] == "6002";
+                    }), message);
+                    console.log("Send message to " + 6002);
+                    break;
+                
+                case 6002:
+                    write(sockets.find(function(elem){
+                        return elem.url.split(':')[2] == "6001";
+                    }), message);
+                    console.log("Send message to " + 6001);
+                    break;
 
+            }
         }, timeout);
+
         /**
          * Do not use the code below. 비동기가 아님.
          */

@@ -42,6 +42,9 @@ class Agent:
                 os.system("npm start &")
 
         finally:
+            os.unsetenv('HTTP_PORT')
+            os.unsetenv('P2P_PORT')
+
             os.chdir("../")
 
     """RESTful APIs"""

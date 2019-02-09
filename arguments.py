@@ -8,6 +8,12 @@ def argparser():
     parser.add_argument('--nodes', type=int, default=120,
                         help='The number of full nodes constructing blockchain.')
 
+    parser.add_argument('--master_http', type=int, default=3000,
+                        help='The HTTP port of a master node.')
+
+    parser.add_argument('--master_p2p', type=int, default=6000,
+                        help='The P2P port of a master node.')
+
     parser.add_argument('--https', type=int, default=3001,
                         help='The base number of HTTP ports.')
 
@@ -24,7 +30,7 @@ def argparser():
                         help='Each node initiates links to the amount of \'neighbors\' selected neighbors.')
 
     """hyperparameters"""
-    parser.add_argument('--sleep', type=float, default=0.5,
+    parser.add_argument('--sleep', type=float, default=2.0,
                         help='The interval between specific lines.')
 
     args = parser.parse_args()

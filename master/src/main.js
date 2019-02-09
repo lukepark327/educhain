@@ -14,8 +14,7 @@ const http_port = process.env.HTTP_PORT || 3000;
 
 /**
  * precondition
- * 
- * 1. all the other nodes are available.
+ * : all the other nodes are available.
  */
 const initialPeers = process.env.PEERS ? process.env.PEERS.split(',') : [];  // > $env:PEERS = "ws://127.0.0.1:6001, ws://127.0.0.1:6002"
 
@@ -32,7 +31,11 @@ function initHttpServer() {
             res.send();
         });
     */
-   
+    app.get("/peers", function (req, res) {
+        res.send(nw.getSockets().map(function (s) {
+            return s._socket.remoteAddress + ':' + s._socket.remotePort;
+        }));
+    });
     /*
     app.post("/addPeers", function (req, res) {
         const peers = req.body.peers || [];
@@ -40,16 +43,6 @@ function initHttpServer() {
         res.send();
     });
     */
-
-    /*
-    app.post("/multicast", function (req, res) {
-        var peers = req.body.peers.split(',') || [];
-        var message = req.body.message || "";
-        nw.multicast(peers, message);
-        res.send();
-    });
-    */
-    
     app.post("/stop", function (req, res) {
         res.send({ "msg": "Stopping server" });
         process.exit();

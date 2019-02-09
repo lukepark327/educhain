@@ -61,9 +61,9 @@ function initMessageHandler(ws) {
 
         neighbors.forEach(function (neighbor, idx) {
             var timeout = delay[idx] * 1000.0;  // milli-seconds * 1000.0
-            
+
             setTimeout(function () {
-                write(sockets.find(function(elem){
+                write(sockets.find(function (elem) {
                     return elem.url.split(':')[2] == neighbor;
                 }), message);
                 console.log("Send message to " + neighbor);

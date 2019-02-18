@@ -73,7 +73,6 @@ class Vnet:
         }
 
 
-# ToDo: master node
 class Master:
     def __init__(self, args, IP, HTTP_PORT, P2P_PORT, agents):
         self.args = args

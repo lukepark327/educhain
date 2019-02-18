@@ -6,11 +6,14 @@ import os
 
 
 class Agent:
-    def __init__(self, IP, HTTP_PORT, P2P_PORT):
+    def __init__(self, args, IP, HTTP_PORT, P2P_PORT):
+        self.args = args
+
         self.ip_address = IP
         self.http_port = HTTP_PORT
         self.p2p_port = P2P_PORT
         self.uri = self.ip_address + ':' + str(self.http_port)
+
         """
         self.address = self.get_address()  # public key
         self.blockchain = self.get_blocks()
@@ -75,11 +78,13 @@ class Agent:
         res = requests.post(self.uri + '/mineBlock', headers=headers, data=json.dumps(data))
         return res.text
 
+    """
     def add_peers(self, req=None):
         headers = {'Content-type': 'application/json'}
         data = {"peers": req}
         res = requests.post(self.uri + '/addPeers', headers=headers, data=json.dumps(data))
         return res.text
+    """
 
     def block_version(self, req=None):
         headers = {'Content-type': 'application/json'}

@@ -13,12 +13,11 @@ function getCurrentVersion() {
     return currentVersion;
 }
 
-// block header structure
 class BlockHeader {
     constructor(version, index, previousHash, timestamp, merkleRoot, difficulty, nonce) {
         this.version = version;
         this.index = index;
-        this.previousHash = previousHash.toString();
+        this.previousHash = previousHash.toString().toUpperCase();
         this.timestamp = timestamp;
         this.merkleRoot = merkleRoot;
         this.difficulty = difficulty;
@@ -26,7 +25,6 @@ class BlockHeader {
     }
 }
 
-// block structure
 class Block {
     constructor(header, data) {
         this.header = header;
@@ -34,13 +32,11 @@ class Block {
     }
 }
 
-// you can obtain the hash(SHA256) value of them.
-// use this syntax: console.log(calculateHash(...));
 function getGenesisBlock() {
     const version = "1.0.0";
     const index = 0;
-    const previousHash = "0000000000000000000000000000000000000000000000000000000000000000";
-    const timestamp = 1231006505;   // 01/03/2009 @ 6:15pm (UTC)
+    const previousHash = '0'.repeat(64);
+    const timestamp = 1231006505; // 01/03/2009 @ 6:15pm (UTC)
     const difficulty = 0;
     const nonce = 0;
     const data = ["The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"];
@@ -57,8 +53,6 @@ function getGenesisBlock() {
      * and returns the new length of the array.
      */
     data.unshift("Coinbase");
-
-    // get merkleRoot
     const merkleTree = merkle("sha256").sync(data);
     const merkleRoot = merkleTree.root();
 
@@ -66,62 +60,60 @@ function getGenesisBlock() {
     return new Block(header, data);
 }
 
-// WARNING!! the current implementation's blockchain is stored in local volatile memory.
-// you may need a database to store the data permanently.
+/**
+ * TODO: Use database to store the data permanently.
+ * A current implemetation stores blockchain in local volatile memory.
+ */
 var blockchain = [getGenesisBlock()];
 
 function getBlockchain() { return blockchain; }
 function getLatestBlock() { return blockchain[blockchain.length - 1]; }
 
-// get new block
-// blockData can be anything; transactions, strings, values, etc.
-// sometime you may need to implement encoding-decoding methods.
 function generateNextBlock(blockData) {
     const previousBlock = getLatestBlock();
     const difficulty = getDifficulty(getBlockchain());
     const nextIndex = previousBlock.header.index + 1;
     const previousHash = calculateHashForBlock(previousBlock);
-    const nextTimestamp = Math.round(new Date().getTime() / 1000);
+    const nextTimestamp = getCurrentTimestamp();
 
     blockData.sort();
     blockData.unshift("Coinbase");
-
     const merkleTree = merkle("sha256").sync(blockData);
     const merkleRoot = merkleTree.root();
 
     const newBlockHeader = findBlock(currentVersion, nextIndex, previousHash, nextTimestamp, merkleRoot, difficulty);
     const newBlock = new Block(newBlockHeader, blockData);
-
     return newBlock;
 }
 
-// PoW
-// WARNING!! this PoW implementation doesn't stop until finding matching block.
+/**
+ * TODO: Implement a stop mechanism.
+ * A current implementation doesn't stop until finding matching block.
+ */
 function findBlock(currentVersion, nextIndex, previoushash, nextTimestamp, merkleRoot, difficulty) {
     var nonce = 0;
     while (true) {
         var hash = calculateHash(currentVersion, nextIndex, previoushash, nextTimestamp, merkleRoot, difficulty, nonce);
         if (hashMatchesDifficulty(hash, difficulty)) {
-            const ut = require("./utils");
-            const hashBinary = ut.hexToBinary(hash);
-            
             return new BlockHeader(currentVersion, nextIndex, previoushash, nextTimestamp, merkleRoot, difficulty, nonce);
         }
         nonce++;
     }
 }
 
-const BLOCK_GENERATION_INTERVAL = 10;       // in seconds
-const DIFFICULTY_ADJUSTMENT_INTERVAL = 10;  // in blocks
+function getCurrentTimestamp() {
+    return Math.round(new Date().getTime() / 1000);
+}
+
+const BLOCK_GENERATION_INTERVAL = 10; // in seconds
+const DIFFICULTY_ADJUSTMENT_INTERVAL = 10; // in blocks
 
 function getDifficulty(aBlockchain) {
     const latestBlock = aBlockchain[aBlockchain.length - 1];
     if (latestBlock.header.index % DIFFICULTY_ADJUSTMENT_INTERVAL === 0 && latestBlock.header.index !== 0) {
         return getAdjustedDifficulty(latestBlock, aBlockchain);
     }
-    else {
-        return latestBlock.header.difficulty;
-    }
+    return latestBlock.header.difficulty;
 }
 
 function getAdjustedDifficulty(latestBlock, aBlockchain) {
@@ -148,7 +140,6 @@ function hashMatchesDifficulty(hash, difficulty) {
     return hashBinary.startsWith(requiredPrefix);
 }
 
-// get hash
 function calculateHashForBlock(block) {
     return calculateHash(
         block.header.version,
@@ -162,11 +153,9 @@ function calculateHashForBlock(block) {
 }
 
 function calculateHash(version, index, previousHash, timestamp, merkleRoot, difficulty, nonce) {
-    return CryptoJS.SHA256(version + index + previousHash + timestamp + merkleRoot + difficulty + nonce).toString();
+    return CryptoJS.SHA256(version + index + previousHash + timestamp + merkleRoot + difficulty + nonce).toString().toUpperCase();
 }
 
-// add new block
-// need validation test
 function addBlock(newBlock) {
     if (isValidNewBlock(newBlock, getLatestBlock())) {
         blockchain.push(newBlock);
@@ -175,14 +164,37 @@ function addBlock(newBlock) {
     return false;
 }
 
-// validation test of new block
+function isValidBlockStructure(block) {
+    return typeof(block.header.version) === 'string'
+        && typeof(block.header.index) === 'number'
+        && typeof(block.header.previousHash) === 'string'
+        && typeof(block.header.timestamp) === 'number'
+        && typeof(block.header.merkleRoot) === 'string'
+        && typeof(block.header.difficulty) === 'number'
+        && typeof(block.header.nonce) === 'number'
+        && typeof(block.data) === 'object';
+}
+
+function isValidTimestamp(newBlock, previousBlock) {
+    return (previousBlock.header.timestamp - 60 < newBlock.header.timestamp)
+        && newBlock.header.timestamp - 60 < getCurrentTimestamp();
+}
+
 function isValidNewBlock(newBlock, previousBlock) {
-    if (previousBlock.header.index + 1 !== newBlock.header.index) {
+    if (!isValidBlockStructure(newBlock)) {
+        console.log('invalid block structure: %s', JSON.stringify(newBlock));
+        return false;
+    }
+    else if (previousBlock.header.index + 1 !== newBlock.header.index) {
         console.log("Invalid index");
         return false;
     }
     else if (calculateHashForBlock(previousBlock) !== newBlock.header.previousHash) {
         console.log("Invalid previousHash");
+        return false;
+    }
+    else if (!isValidTimestamp(newBlock, previousBlock)) {
+        console.log('invalid timestamp');
         return false;
     }
     else if (newBlock.data[0] !== "Coinbase") {
@@ -200,7 +212,6 @@ function isValidNewBlock(newBlock, previousBlock) {
     return true;
 }
 
-// validation test of blockchain
 function isValidChain(blockchainToValidate) {
     if (JSON.stringify(blockchainToValidate[0]) !== JSON.stringify(getGenesisBlock())) {
         return false;
@@ -210,15 +221,11 @@ function isValidChain(blockchainToValidate) {
         if (isValidNewBlock(blockchainToValidate[i], tempBlocks[i - 1])) {
             tempBlocks.push(blockchainToValidate[i]);
         }
-        else {
-            return false;
-        }
+        else { return false; }
     }
     return true;
 }
 
-// WARNING!! you can modify the following implementaion according to your own consensus design.
-// current consensus: the longest chain rule
 function replaceChain(newBlocks) {
     if (
         isValidChain(newBlocks)
@@ -229,9 +236,8 @@ function replaceChain(newBlocks) {
         console.log("Received blockchain is valid. Replacing current blockchain with received blockchain");
         blockchain = newBlocks;
         nw.broadcast(nw.responseLatestMsg());
-    } else {
-        console.log("Received blockchain invalid");
     }
+    else { console.log("Received blockchain invalid"); }
 }
 
 function getBlockVersion(index) {

@@ -37,31 +37,21 @@ There are some examples of important information...
 * Effective throughput and nodes behind ratio.   
 * TPS(Transactions Per Seconds).   
 
-<!--
-TODO
-blockchain-simulator overview
--->
+![educhain2](https://github.com/twodude/educhain/blob/master/images/educhain2.png)
 
 ```educhain``` *version 2.0.0* targets a more general blockchain implementation. Now students can implement the blockchain core in various ways. For example, you can implement a consensus algorithm in PoW(Proof-of-Work), PoS(Proof-of-Stake), and PoA(Proof-of-authority); whatever you want. Not only consensus parts, but also block or blockchain structure, validation processes, communication parts, and identification.
 
 Get ```educhain``` *version 1.0.0* at [v1.0.0 branch](https://github.com/twodude/educhain/tree/v1.0.0).
 
 
-<!--
-TODO
-create branches
--->
 ## Problem Solving
-- Goto the [problem branch]()
-- Goto the [solution branch]()
+- Goto the [problem branch](https://github.com/twodude/educhain/tree/problem)
+- Goto the [solution branch](https://github.com/twodude/educhain/tree/solution)
 
 
 # How to Use
-<!--
-TODO
-[![video](http://img.youtube.com/vi/6L_c4Ug-KwE/0.jpg)](https://www.youtube.com/watch?v=6L_c4Ug-KwE)   
+[![video](http://img.youtube.com/vi/oR6GdZUqGmM/0.jpg)](https://www.youtube.com/watch?v=oR6GdZUqGmM)   
 > Click on the image above to play the video.
--->
 
 
 ## Environments

@@ -37,10 +37,7 @@ There are some examples of important information...
 * Effective throughput and nodes behind ratio.   
 * TPS(Transactions Per Seconds).   
 
-<!--
-TODO
-blockchain-simulator overview
--->
+![educhain2](https://github.com/twodude/educhain/blob/master/images/educhain2.png)
 
 ```educhain``` *version 2.0.0* targets a more general blockchain implementation. Now students can implement the blockchain core in various ways. For example, you can implement a consensus algorithm in PoW(Proof-of-Work), PoS(Proof-of-Stake), and PoA(Proof-of-authority); whatever you want. Not only consensus parts, but also block or blockchain structure, validation processes, communication parts, and identification.
 

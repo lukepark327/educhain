@@ -3,14 +3,15 @@
 [![node](https://img.shields.io/badge/node-%3E%3D4.3.2-yellow.svg)](https://nodejs.org/en/)
 [![python](https://img.shields.io/badge/python-3.7.1-blue.svg)](https://www.python.org)   
 
+
 # edu-chain :: Instructional Blockchain
 
-![educhain_logo](https://github.com/twodude/educhain/blob/master/images/educhain_logo.png)
+![educhain_logo](https://github.com/twodude/educhain/blob/master/images/logo.png)
 <!--
 ![symbol](https://github.com/twodude/educhain/blob/master/images/symbol.png)
 -->
 
-```educhain``` is an automated testing software.
+```educhain``` is an instructional purpose blockchain.
 
 ```#blockchain``` ```#simulator``` ```#testing-tools``` ```#test-automation```
 
@@ -18,107 +19,144 @@
 > The main project of
 **Sogang Univ. Blockchain Lab.**   
 > Based on [one-chain](https://github.com/twodude/onechain)   
+> Based on [blockchain-simulator](https://github.com/twodude/blockchain-simulator)   
+
 
 ## Abstract
-```educhain``` is a simple blockchain implementation for educational purpose. It supports generating blocks, verifying blocks, mining blocks, consensus about conflicting chains, connecting peers, and various wallet functions, et al. Like
-*[Pintos](https://web.stanford.edu/class/cs140/projects/pintos/pintos.html)*, simple operating system framework for the 80x86 architecture, educhain project is intended to introduce undergraduates to concepts in blockchain core design and implementation.
 
-It was created at Sogang University's Blockchain Lab. by
-**[Luke Park (Sanghyeon Park)](https://github.com/twodude)**
-in 2018.
+*Fill in the blanks, simulate your own code, check the score, and improve it.*   
+*Make your own blockchain core.*   
+
+The simulator written in python automatically tests your code(s) and provides you some important information.   
+There are some examples of important information...
+* Reorganization ratio.   
+* Effective throughput and nodes behind ratio.   
+* TPS(Transactions Per Seconds).   
+
 
 ## Overview
 
-![diagram](https://github.com/twodude/educhain/blob/master/images/overview.png)
+```educhain``` is a simple blockchain implementation for instructional and educational purpose.
+Like *[Pintos](https://web.stanford.edu/class/cs140/projects/pintos/pintos.html)*, simple operating system framework for the 80x86 architecture, educhain project is intended to introduce undergraduates to concepts in blockchain core design and implementation.
 
-*Fill in the blanks, simulate your own code, check the score, and modify it.*
+It was created at Sogang University's Blockchain Lab. by
+**[Luke Park (Sanghyeon Park)](https://github.com/twodude)**.
 
-The simulator written in python automatically tests your code(s) and provides you some feedback
-**-pass/FAIL-**
-in all possible situations.
+```educhain``` version 2.0.0 targets a more general blockchain implementation. Now students can implement the blockchain core in various ways. For example, you can implement a consensus algorithm in PoW(Proof-of-Work), PoS(Proof-of-Stake), and PoA(Proof-of-authority), whatever you want. Not only consensus parts, but also block or blockchain structure, validation processes, communication parts, and identification.
 
-* [Goto the problem branch](https://github.com/twodude/educhain/blob/problem/src/blockchain.js)
-* [Goto the solution branch](https://github.com/twodude/educhain/blob/solution/src/blockchain.js)
 
-## Details
+## Problem Solving
+- Goto the problem branch
+- Goto the solution branch
 
-For example, a ```./tests/test1/main.py``` file describes following situation:
-
-1. Check each peer's genesis block   
-2. Generate new blocks on each peer   
-    1. 2 blocks on peer #1   
-    2. 4 blocks on peer #2   
-    3. 2 blocks on peer #3   
-3. Connect peers   
-    1. peer #1 with #2 (1->2)   
-    2. peer #1 with #3 (1->(2 and 3))   
-4. Generate new blocks   
-    1. 3 blocks on peer #1   
-    2. 5 blocks on peer #3   
-5. Stop all peers   
-
-The above simulator tests each situation step by step.
 
 # How to Use
 [![video](http://img.youtube.com/vi/6L_c4Ug-KwE/0.jpg)](https://www.youtube.com/watch?v=6L_c4Ug-KwE)   
 > Click on the image above to play the video.
+
 
 ## Environments
 Blockchain core and its accompanying parts are written in Node.js. Testing or simulating parts are written in Python.
 - Node.js v8.11.3 (>=4.3.2)
 - Python 3.7.1 
 
-## Run node independently
-* move ```./src```
-```
-cd ./src
+
+## Start a Simulation
+
+### Preconditions
+```bash
+$ sh preconditions.sh
 ```
 
-* install required modules
+### Run
+```bash
+$ sh run.sh
 ```
-npm install
+*or*
+```bash
+$ python3 main.py --nodes=24 --neighbors=3
 ```
-See [```./src/package.json```](https://github.com/twodude/educhain/blob/master/src/package.json)'s 'dependencies' field if you wonder.
+There are several arguments that control simulation settings.
+```bash
+$ python3 main.py --help
+  --steps STEPS         The number of simulation steps.
+  --nodes NODES         The number of full nodes constructing blockchain.
+  --neighbors NEIGHBORS
+                        Each node initiates links to the amount of 'neighbors'
+                        selected neighbors.
+  --timeout TIMEOUT     Maximum waiting time. (seconds)
+  --prop_delay_avg PROP_DELAY_AVG
+                        The average value of propagation delay. (milliseconds)
+  --prop_delay_std PROP_DELAY_STD
+                        The standard deviation of propagation delay.
+                        (milliseconds)
+  --freq_avg FREQ_AVG   The average value of frequency. (milliseconds)
+  --freq_std FREQ_STD   The standard deviation of frequency. (milliseconds)
+  --master_http MASTER_HTTP
+                        The HTTP port of a master node.
+  --master_p2p MASTER_P2P
+                        The P2P port of a master node.
+  --https HTTPS         The base number of HTTP ports.
+  --p2ps P2PS           The base number of P2P ports.
+```
 
-* start node
-```
-npm start
-```
-Visit the [one-chain](https://github.com/twodude/onechain) repository to read more details.
-
-## Testing and Scoring
-* move ```./tests```
-```
-cd tests
+## Cleanup
+```bash
+$ sh cleanup.sh
 ```
 
-* run test program
+
+## APIs
+
+### Get blockchain
+```bash
+curl http://127.0.0.1:3001/blocks
 ```
-python3 main.py
+You can pretty-print JSON with:
+```bash
+curl http://127.0.0.1:3001/blocks | python -m json.tool
 ```
+Python >= 2.6 required.
+
+### Get connected peers
+```bash
+curl http://127.0.0.1:3001/peers
+```
+
+### Get Address
+```bash
+curl http://127.0.0.1:3001/address
+```
+
 
 ## Trouble Shootings
 * if
 *```ImportError: No module named requests```*
 occurs:
-```
-pip install requests
+```bash
+$ pip install requests
 ```
 
 * if 
 *```Error: listen EADDRINUSE :::3001```*
 occurs:
+```bash
+$ killall npm
 ```
-killall npm
+
+* if
+* ```'Time out'``` 
+occurs:
+```bash
+$ sh preconditions.sh
 ```
-*or*
-```
-taskkill /im node.exe /F
-```
+
 
 # References
 - https://github.com/twodude/onechain   
+- https://github.com/twodude/blockchain-simulator   
 - https://web.stanford.edu/class/cs140/projects/pintos/pintos.html#SEC_Top   
+
 
 # License
 The educhain project is licensed under the [Apache License, Version 2.0](https://opensource.org/licenses/Apache-2.0), also included in our repository in the [LICENSE](https://github.com/twodude/educhain/blob/master/LICENSE) file.

@@ -47,13 +47,9 @@ blockchain-simulator overview
 Get ```educhain``` *version 1.0.0* at [v1.0.0 branch](https://github.com/twodude/educhain/tree/v1.0.0).
 
 
-<!--
-TODO
-create branches
--->
 ## Problem Solving
-- Goto the [problem branch]()
-- Goto the [solution branch]()
+- Goto the [problem branch](https://github.com/twodude/educhain/tree/problem)
+- Goto the [solution branch](https://github.com/twodude/educhain/tree/solution)
 
 
 # How to Use

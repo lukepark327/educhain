@@ -86,19 +86,11 @@ function generateNextBlock(blockData) {
     return newBlock;
 }
 
-/**
- * TODO: Implement a stop mechanism.
- * A current implementation doesn't stop until finding matching block.
- */
 function findBlock(currentVersion, nextIndex, previoushash, nextTimestamp, merkleRoot, difficulty) {
     var nonce = 0;
-    while (true) {
-        var hash = calculateHash(currentVersion, nextIndex, previoushash, nextTimestamp, merkleRoot, difficulty, nonce);
-        if (hashMatchesDifficulty(hash, difficulty)) {
-            return new BlockHeader(currentVersion, nextIndex, previoushash, nextTimestamp, merkleRoot, difficulty, nonce);
-        }
-        nonce++;
-    }
+    
+    // Implement consensus algorithm.
+    return new BlockHeader(currentVersion, nextIndex, previoushash, nextTimestamp, merkleRoot, difficulty, nonce);
 }
 
 function getCurrentTimestamp() {

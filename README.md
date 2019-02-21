@@ -36,29 +36,48 @@ There are some examples of important information...
 
 ## Overview
 
+<!--
+TODO
+onechain overview
+-->
+
 ```educhain``` is a simple blockchain implementation for instructional and educational purpose.
 Like *[Pintos](https://web.stanford.edu/class/cs140/projects/pintos/pintos.html)*, simple operating system framework for the 80x86 architecture, educhain project is intended to introduce undergraduates to concepts in blockchain core design and implementation.
 
 It was created at Sogang University's Blockchain Lab. by
 **[Luke Park (Sanghyeon Park)](https://github.com/twodude)**.
 
-```educhain``` version 2.0.0 targets a more general blockchain implementation. Now students can implement the blockchain core in various ways. For example, you can implement a consensus algorithm in PoW(Proof-of-Work), PoS(Proof-of-Stake), and PoA(Proof-of-authority), whatever you want. Not only consensus parts, but also block or blockchain structure, validation processes, communication parts, and identification.
+<!--
+TODO
+blockchain-simulator overview
+-->
+
+```educhain``` *version 2.0.0* targets a more general blockchain implementation. Now students can implement the blockchain core in various ways. For example, you can implement a consensus algorithm in PoW(Proof-of-Work), PoS(Proof-of-Stake), and PoA(Proof-of-authority); whatever you want. Not only consensus parts, but also block or blockchain structure, validation processes, communication parts, and identification.
+
+Get ```educhain``` *version 1.0.0* at [v1.0.0 branch](https://github.com/twodude/educhain/tree/v1.0.0).
 
 
+<!--
+TODO
+create branches
+-->
 ## Problem Solving
-- Goto the problem branch
-- Goto the solution branch
+- Goto the [problem branch]()
+- Goto the [solution branch]()
 
 
 # How to Use
+<!--
+TODO
 [![video](http://img.youtube.com/vi/6L_c4Ug-KwE/0.jpg)](https://www.youtube.com/watch?v=6L_c4Ug-KwE)   
 > Click on the image above to play the video.
+-->
 
 
 ## Environments
 Blockchain core and its accompanying parts are written in Node.js. Testing or simulating parts are written in Python.
 - Node.js v8.11.3 (>=4.3.2)
-- Python 3.7.1 
+- Python 3.6.7 
 
 
 ## Start a Simulation

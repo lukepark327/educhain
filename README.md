@@ -20,8 +20,6 @@
 
 ## Overview
 
-![approach](https://github.com/twodude/educhain/blob/master/images/approach.png)
-
 *Fill in the blanks, simulate your own code, check the score, and improve it.*   
 *Make your own blockchain core.*   
 
@@ -31,7 +29,7 @@ There are some examples of important information...
 * Effective throughput and nodes behind ratio.   
 * TPS(Transactions Per Seconds).   
 
-![onechain](https://github.com/twodude/educhain/blob/master/images/onechain.png)
+![approach](https://github.com/twodude/educhain/blob/master/images/approach.png)
 
 ```educhain``` is a simple blockchain implementation for instructional and educational purpose.
 Like *[Pintos](https://web.stanford.edu/class/cs140/projects/pintos/pintos.html)*, simple operating system framework for the 80x86 architecture, educhain project is intended to introduce undergraduates to concepts in blockchain core design and implementation.

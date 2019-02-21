@@ -23,21 +23,19 @@
 *Fill in the blanks, simulate your own code, check the score, and improve it.*   
 *Make your own blockchain core.*   
 
-The simulator written in python automatically tests your code(s) and provides you some important information.   
-There are some examples of important information...
-* Reorganization ratio.   
-* Effective throughput and nodes behind ratio.   
-* TPS(Transactions Per Seconds).   
+It was created at Sogang University's Blockchain Lab. by
+**[Luke Park (Sanghyeon Park)](https://github.com/twodude)**.
 
 ![approach](https://github.com/twodude/educhain/blob/master/images/approach.png)
 
 ```educhain``` is a simple blockchain implementation for instructional and educational purpose.
 Like *[Pintos](https://web.stanford.edu/class/cs140/projects/pintos/pintos.html)*, simple operating system framework for the 80x86 architecture, educhain project is intended to introduce undergraduates to concepts in blockchain core design and implementation.
 
-It was created at Sogang University's Blockchain Lab. by
-**[Luke Park (Sanghyeon Park)](https://github.com/twodude)**.
-
-Get ```educhain``` *version 1.0.0* at [v1.0.0 branch](https://github.com/twodude/educhain/tree/v1.0.0).
+The simulator written in python automatically tests your code(s) and provides you some important information.   
+There are some examples of important information...
+* Reorganization ratio.   
+* Effective throughput and nodes behind ratio.   
+* TPS(Transactions Per Seconds).   
 
 <!--
 TODO
@@ -45,6 +43,8 @@ blockchain-simulator overview
 -->
 
 ```educhain``` *version 2.0.0* targets a more general blockchain implementation. Now students can implement the blockchain core in various ways. For example, you can implement a consensus algorithm in PoW(Proof-of-Work), PoS(Proof-of-Stake), and PoA(Proof-of-authority); whatever you want. Not only consensus parts, but also block or blockchain structure, validation processes, communication parts, and identification.
+
+Get ```educhain``` *version 1.0.0* at [v1.0.0 branch](https://github.com/twodude/educhain/tree/v1.0.0).
 
 
 <!--

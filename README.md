@@ -53,11 +53,8 @@ Get ```educhain``` *version 1.0.0* at [v1.0.0 branch](https://github.com/twodude
 
 
 # How to Use
-<!--
-TODO
-[![video](http://img.youtube.com/vi/6L_c4Ug-KwE/0.jpg)](https://www.youtube.com/watch?v=6L_c4Ug-KwE)   
+[![video](http://img.youtube.com/vi/oR6GdZUqGmM/0.jpg)](https://www.youtube.com/watch?v=oR6GdZUqGmM)   
 > Click on the image above to play the video.
--->
 
 
 ## Environments

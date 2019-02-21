@@ -164,7 +164,7 @@ $ killall npm
 ```
 
 * if
-* ```'Time out'``` 
+*```'Time out'```*
 occurs:
 ```bash
 $ sh preconditions.sh

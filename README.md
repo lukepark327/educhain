@@ -46,6 +46,7 @@ Get ```educhain``` *version 1.0.0* at [v1.0.0 branch](https://github.com/twodude
 
 ## Problem Solving
 - Goto the [problem branch](https://github.com/twodude/educhain/tree/problem)
+  - **Q1**: [Consensus Algorithm](https://github.com/twodude/educhain/blob/problem/onechain/src/blockchain.js#L92)
 - Goto the [solution branch](https://github.com/twodude/educhain/tree/solution)
 
 

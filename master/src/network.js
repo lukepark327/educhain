@@ -22,8 +22,6 @@ function setTable() {
 }
 
 function initP2PServer() {
-    // websocket server
-    // P2P's peer works both server side and client side.
     const server = new WebSocket.Server({ port: p2p_port });
     server.on("connection", function (ws) { initConnection(ws); });
     console.log("Listening websocket p2p port on: " + p2p_port);

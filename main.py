@@ -1,23 +1,21 @@
 """
-@version 1.2.0
+@version 1.4.0
 """
 
-# TODO: Add mallcious node
+# TODO: Add mallcious nodes.
+# TODO: Add light clients.
 
 from simulator import agent, environment, virtual_network
 from arguments import argparser
+from utils import get_delay
 
-from platform import system
 import json
 import os
 from time import sleep
+import timeout_decorator
 import random
 import numpy as np
-from pprint import pprint
-
-
-def is_windows():
-    return True if system() == "Windows" else False
+# from pprint import pprint
 
 
 # define
@@ -29,59 +27,100 @@ random.seed(SEED)
 np.random.seed(SEED)
 
 
-if __name__ == '__main__':
-    # argparser
-    args = argparser()
+def prestart(args):
+    @timeout_decorator.timeout(args.timeout, use_signals=False)
+    def all_agents_avail(agents):
+        def check_agents_avail(agents):
+            for agent_ in agents:
+                try:
+                    agent_.get_address()
+                except Exception:
+                    return False
+            return True
+
+        while not check_agents_avail(agents):
+            pass
+
+    @timeout_decorator.timeout(args.timeout, use_signals=False)
+    def master_avail(master):
+        def check_master_avail(master):
+            try:
+                return master.get_peers()
+            except Exception:
+                return []
+
+        while not len(check_master_avail(master)) == args.nodes:
+            pass
 
     try:
-        # agent
-        agents = [agent.Agent(args, IP, args.https + i, args.p2ps + i) for i in range(args.nodes)]
-
-        # environment
+        agents = [agent.Agent(args, IP, args.https + i, args.p2ps + i)
+                  for i in range(args.nodes)]
         env = environment.Env(args)
-
-        """virtual network"""
         vnet = virtual_network.Vnet(args, agents)
-        # pprint(vnet.virtual_connections)
 
-        # save propagation delay table
+        # pprint(vnet.virtual_connections)
         with open('table.json', 'w') as f:
             json.dump(vnet.virtual_connections, f)
 
-        # TODO: Visualization of virtual and real network with propagation delay
-        # TODO: Use table.json
+        all_agents_avail(agents)
+        print("All agents are available.")
 
-        """master node"""
-        # need some interval before connection.
-        sleep(args.sleep)
+        master = virtual_network.Master(
+            args, IP, args.master_http, args.master_p2p, agents)
 
-        master = virtual_network.Master(args, IP, args.master_http, args.master_p2p, agents)
+        master_avail(master)
+        print("A master node is available.")
+        return agents, env, vnet, False
 
-        """create and propagate blocks"""
-        # TODO: Make blocks randomly
-        # TODO: How frequently?
-        sleep(args.sleep)
+    except Exception as e:
+        print(e)
+        os.system("killall npm")
+        return None, None, None, True
 
-        # TODO: replace 'while' loop to multi-processing
-        # Current implementation doesn't make multiple queries.
-        while True:
-            agents[random.randrange(0, len(agents))].mine_block()
-            sleep(random.random() * 10)
 
-        # TODO: How many steps?
-        # TODO: What means 'step'? What means 'episode'?
+if __name__ == '__main__':
+    args = argparser()
+
+    agents, env, vnet, is_error = prestart(args)
+    # TODO: Visualization of virtual and real network with propagation delay.
+    # How many groups?
+    # Use table.json
+
+    try:
+        if is_error:
+            raise ValueError
+
+        print("Simulation start.")
+
+        for step in range(args.steps):
+            who_ = random.randrange(0, len(agents))
+
+            # TODO: How frequently?
+            # Use normal distribution
+            # TODO: NO ABS, DO RETRY.
+            delay_ = get_delay(args.freq_avg, args.freq_std) / 1000.
+
+            print("step: {}, agent: {}, delay: {}".format(step, who_, delay_))
+
+            # TODO: Current implementation couldn't make multiple queries.
+            # Use multi-processing.
+            agents[who_].mine_block()
+
+            # TODO: A 'reorganization' checking process must be separated with agents' action.
+            # Check reorg. per unit time.
+            # Use multi-processing.
+
+            sleep(delay_)
+            step += 1
+
         """analysis"""
-        # 각 에이전트의 블록 생성 비율, 채택 비율
-        # tps (마스터노드를 통과하는 초당 블록의 갯수)
-        # 포크 발생 비율
-        # TODO: Offer the dashboard with tensorboardX
-        # TODO: Tracking master node
+        # TODO: Offer the dashboard with tensorboardX.
+        # 1. Check reorg. ratio.
+        # 2. Check Behind nodes ratio.
+        # 3. Check TPS. (keep watching the master node.)
 
     finally:
-        # need some interval before kill npm.
-        sleep(args.sleep)
+        print("Simulation terminated.")
+        input("Press Enter to exit: ")
 
-        if is_windows():
-            os.system("taskkill /im node.exe /F")
-        else:
-            os.system("killall npm")
+        os.system("killall npm")
